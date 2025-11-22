@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск по дате</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        label {
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        input[type="date"] {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .search-btn:active {
+            transform: translateY(0);
+        }
+        
+        .results-container {
+            display: none;
+        }
+        
+        .results-container.active {
+            display: block;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: #999;
+            padding: 30px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Страница поиска -->
+        <div id="searchPage">
+            <h1>Поиск данных</h1>
+            <form class="search-form" id="searchForm">
+                <label for="searchDate">Выберите дату:</label>
+                <input type="date" id="searchDate" required>
+                <button type="submit" class="search-btn">Поиск</button>
+            </form>
+        </div>
+        
+        <!-- Страница результатов -->
+        <div id="resultsPage" class="results-container">
+            <button class="back-btn" onclick="goBack()">← Назад к поиску</button>
+            <h1>Результаты поиска</h1>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Тестовые данные
+        const data = [
+            { date: '2024-01-15', title: 'Отчет по продажам', description: 'Квартальный отчет', status: 'Завершен' },
+            { date: '2024-01-15', title: 'Встреча с клиентом', description: 'Обсуждение проекта', status: 'Запланировано' },
+            { date: '2024-02-20', title: 'Презентация продукта', description: 'Новая линейка товаров', status: 'В процессе' },
+            { date: '2024-03-10', title: 'Аудит системы', description: 'Проверка безопасности', status: 'Завершен' },
+            { date: '2024-03-10', title: 'Обучение персонала', description: 'Тренинг по новым технологиям', status: 'Запланировано' },
+            { date: '2024-04-05', title: 'Запуск кампании', description: 'Маркетинговая кампания', status: 'Активен' },
+        ];
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedDate = document.getElementById('searchDate').value;
+            showResults(selectedDate);
+        });
+
+        function showResults(date) {
+            const results = data.filter(item => item.date === date);
+            const resultsContent = document.getElementById('resultsContent');
+            
+            if (results.length === 0) {
+                resultsContent.innerHTML = '<div class="no-results">По выбранной дате данных не найдено</div>';
+            } else {
+                let tableHTML = '<table><thead><tr><th>Название</th><th>Описание</th><th>Статус</th></tr></thead><tbody>';
+                
+                results.forEach(item => {
+                    tableHTML += `
+                        <tr>
+                            <td>${item.title}</td>
+                            <td>${item.description}</td>
+                            <td>${item.status}</td>
+                        </tr>
+                    `;
+                });
+                
+                tableHTML += '</tbody></table>';
+                resultsContent.innerHTML = tableHTML;
+            }
+            
+            document.getElementById('searchPage').style.display = 'none';
+            document.getElementById('resultsPage').classList.add('active');
+        }
+
+        function goBack() {
+            document.getElementById('searchPage').style.display = 'block';
+            document.getElementById('resultsPage').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
