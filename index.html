@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Notices - INTERPOL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-text {
+            font-size: 14px;
+            color: #1e3a5f;
+            font-weight: bold;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 30px auto;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            width: 350px;
+            height: fit-content;
+        }
+        
+        .sidebar h2 {
+            color: #1e3a5f;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        
+        .filter-group {
+            margin-bottom: 25px;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .filter-group input[type="text"],
+        .filter-group input[type="number"],
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .radio-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .age-range {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .age-range input {
+            width: 80px;
+        }
+        
+        .search-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .search-btn:hover {
+            background: #2d5a7b;
+        }
+        
+        .results {
+            flex: 1;
+        }
+        
+        .results-header {
+            background: white;
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .results-header h1 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .results-header .count {
+            color: #1e3a5f;
+            font-weight: bold;
+            font-size: 28px;
+        }
+        
+        .results-header p {
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .notice-card {
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .notice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .notice-image {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .notice-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .red-notice-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #c41e3a;
+            color: white;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .badge-logo {
+            font-size: 9px;
+            display: block;
+        }
+        
+        .notice-info {
+            padding: 20px;
+        }
+        
+        .notice-name {
+            color: #1e3a5f;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .notice-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#1e3a5f" stroke-width="3"/>
+                <text x="50" y="60" text-anchor="middle" fill="#1e3a5f" font-size="40" font-weight="bold">I</text>
+            </svg>
+            <span class="logo-text">INTERPOL</span>
+        </div>
+        <div style="color: #1e3a5f; font-size: 14px;">EN ▼</div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2>Filter criteria</h2>
+            
+            <div class="filter-group">
+                <label>Family name</label>
+                <input type="text" placeholder="">
+            </div>
+            
+            <div class="filter-group">
+                <label>Forename</label>
+                <input type="text" placeholder="">
+            </div>
+            
+            <div class="filter-group">
+                <label>Nationality</label>
+                <input type="text" placeholder="Search">
+            </div>
+            
+            <div class="filter-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" checked> All</label>
+                    <label><input type="radio" name="gender"> Female</label>
+                    <label><input type="radio" name="gender"> Male</label>
+                    <label><input type="radio" name="gender"> Unknown</label>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label>Current age</label>
+                <div class="age-range">
+                    <input type="number" placeholder="0">
+                    <span>to</span>
+                    <input type="number" placeholder="120">
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label>Wanted by</label>
+                <input type="text" placeholder="Search">
+            </div>
+            
+            <div class="filter-group">
+                <label>Keyword</label>
+                <input type="text" placeholder="">
+            </div>
+            
+            <button class="search-btn">SEARCH</button>
+        </div>
+        
+        <div class="results">
+            <div class="results-header">
+                <h1>Total number of public Red Notices in circulation: <span class="count">6514</span></h1>
+                <h1>Search results: <span class="count">6514</span></h1>
+                <p>This site displays up to 160 notices per search result. Please refine your search criteria to find the notice you are looking for.</p>
+            </div>
+            
+            <div class="results-grid">
+                <a href="details.html" class="notice-card">
+                    <div class="notice-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23ddd' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-size='20'%3EФото будет здесь%3C/text%3E%3C/svg%3E" alt="Person">
+                        <div class="red-notice-badge">
+                            <span class="badge-logo">INTERPOL</span>
+                            RED<br>NOTICE
+                        </div>
+                    </div>
+                    <div class="notice-info">
+                        <div class="notice-name">MOROZ</div>
+                        <div class="notice-details">
+                            ANATOLIY<br>
+                            48 years old<br>
+                            Ukraine
+                        </div>
+                    </div>
+                </a>
+                
+                <div class="notice-card">
+                    <div class="notice-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23888' width='300' height='300'/%3E%3C/svg%3E" alt="Person">
+                        <div class="red-notice-badge">
+                            <span class="badge-logo">INTERPOL</span>
+                            RED<br>NOTICE
+                        </div>
+                    </div>
+                    <div class="notice-info">
+                        <div class="notice-name">IVANOV</div>
+                        <div class="notice-details">
+                            DMITRY<br>
+                            35 years old<br>
+                            Russia
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notice-card">
+                    <div class="notice-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23666' width='300' height='300'/%3E%3C/svg%3E" alt="Person">
+                        <div class="red-notice-badge">
+                            <span class="badge-logo">INTERPOL</span>
+                            RED<br>NOTICE
+                        </div>
+                    </div>
+                    <div class="notice-info">
+                        <div class="notice-name">PETROV</div>
+                        <div class="notice-details">
+                            SERGEY<br>
+                            42 years old<br>
+                            Belarus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
