@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДМС - Перевірка документів</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    
+    <!-- Сторінка пошуку -->
+    <div id="searchPage">
+        <!-- Шапка -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+            <div class="max-w-4xl mx-auto px-6 py-6">
+                <h1 class="text-2xl font-bold">Державна міграційна служба України</h1>
+                <p class="text-blue-100 text-sm">Перевірка дійсності документів</p>
+            </div>
+        </div>
+
+        <!-- Основний контент -->
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="bg-blue-100 rounded-full p-3">
+                        <i data-lucide="search" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Перевірка за базою документів</h2>
+                </div>
+
+                <!-- Форма -->
+                <div class="space-y-6">
+                    <!-- Крок 1 -->
+                    <div>
+                        <label class="flex items-center gap-2 text-lg font-semibold text-gray-700 mb-3">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                            Оберіть тип документа
+                        </label>
+                        <select id="documentType" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-gray-700">
+                            <option value="">Оберіть тип документа</option>
+                            <option value="Паспорт громадянина України для виїзду за кордон">Паспорт громадянина України для виїзду за кордон</option>
+                            <option value="Паспорт громадянина України у формі картки">Паспорт громадянина України у формі картки</option>
+                            <option value="Тимчасове посвідчення громадянина України">Тимчасове посвідчення громадянина України</option>
+                            <option value="Посвідчення особи без громадянства для виїзду за кордон">Посвідчення особи без громадянства для виїзду за кордон</option>
+                            <option value="Посвідка на постійне проживання">Посвідка на постійне проживання</option>
+                            <option value="Посвідка на постійне проживання (біометрична)">Посвідка на постійне проживання (біометрична)</option>
+                            <option value="ID-картка іноземця">ID-картка іноземця</option>
+                            <option value="Посвідчення біженця">Посвідчення біженця</option>
+                        </select>
+                    </div>
+
+                    <!-- Крок 2 -->
+                    <div>
+                        <label class="flex items-center gap-2 text-lg font-semibold text-gray-700 mb-3">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                            Введіть серію та номер документа
+                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-600 mb-2">Серія</label>
+                                <input type="text" id="series" placeholder="ЯЮ" maxlength="2" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all uppercase text-gray-700">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-600 mb-2">Номер</label>
+                                <input type="text" id="number" placeholder="6 цифр" maxlength="6" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-gray-700">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Крок 3 -->
+                    <div>
+                        <label class="flex items-center gap-2 text-lg font-semibold text-gray-700 mb-3">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                            CAPTCHA
+                        </label>
+                        <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border-2 border-gray-300">
+                            <input type="checkbox" id="captcha" class="w-5 h-5">
+                            <span class="text-gray-700">Я не робот</span>
+                        </div>
+                    </div>
+
+                    <button onclick="searchDocument()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                        Перевірити документ
+                    </button>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-600">
+                    <p class="text-sm text-gray-600">
+                        <strong>Тестові дані:</strong> Серія: FE, Номер: 066131
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сторінка результатів -->
+    <div id="resultsPage" style="display: none;">
+        <!-- Шапка -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+            <div class="max-w-6xl mx-auto px-6 py-6">
+                <h1 class="text-2xl font-bold">Державна міграційна служба України</h1>
+                <p class="text-blue-100 text-sm">Результати перевірки документа</p>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <!-- Статус -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6 mb-8 flex items-center gap-4">
+                <i data-lucide="check-circle" class="w-12 h-12 text-green-600 flex-shrink-0"></i>
+                <div>
+                    <h2 class="text-2xl font-bold text-green-800">Документ дійсний</h2>
+                    <p class="text-green-700">Документ знайдено в базі даних та є чинним</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Фото -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Фотографія власника</h3>
+                        <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-300">
+                            <img src="IMG_20240328_123405_921.jpg" alt="Фото власника" class="w-full h-64 object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Дані -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Персональні дані -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                            <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
+                            Персональні дані
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1">П.І.Б.</p>
+                                <p class="text-lg font-semibold text-gray-800">Равченко Кирил Сергійович</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    Дата народження
+                                </p>
+                                <p class="text-lg font-semibold text-gray-800">04.09.1981</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1">Стать</p>
+                                <p class="text-lg font-semibold text-gray-800">Чоловік</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                    Місце народження
+                                </p>
+                                <p class="text-lg font-semibold text-gray-800">м. Кривий Ріг</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Інформація про документ -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
+                            Інформація про документ
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1">Тип документа</p>
+                                <p class="text-lg font-semibold text-gray-800" id="resultDocType"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 bg-gray-50 rounded-lg">
+                                    <p class="text-sm text-gray-600 mb-1">Серія та номер</p>
+                                    <p class="text-lg font-semibold text-gray-800" id="resultSeriesNumber"></p>
+                                </div>
+                                <div class="p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
+                                    <p class="text-sm text-blue-700 mb-1">Термін дії</p>
+                                    <p class="text-lg font-bold text-blue-800">09.12.2025 - 09.12.2035</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    Орган видачі
+                                </p>
+                                <p class="text-lg font-semibold text-gray-800">Відділ №10 м. Кривий Ріг</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Додаткова інформація -->
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg">
+                        <p class="text-sm text-blue-800">
+                            <strong>Увага:</strong> Інформація про документ отримана з Єдиного державного реєстру документів. 
+                            Дата перевірки: <span id="checkDate"></span>
+                        </p>
+                    </div>
+
+                    <button onclick="resetSearch()" class="w-full bg-gray-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-gray-700 transition-all shadow-lg">
+                        Перевірити інший документ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ініціалізація іконок Lucide
+        lucide.createIcons();
+
+        // Автоматичне перетворення серії в великі літери
+        document.getElementById('series').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Функція пошуку документа з паузою 2 секунди
+        function searchDocument() {
+            const docType = document.getElementById('documentType').value;
+            const series = document.getElementById('series').value.toUpperCase();
+            const number = document.getElementById('number').value;
+            const captcha = document.getElementById('captcha').checked;
+
+            if (!docType || !series || !number || !captcha) {
+                alert('Будь ласка, заповніть всі поля та підтвердіть CAPTCHA');
+                return;
+            }
+
+            // Перевірка тестових даних
+            if (series === 'FE' && number === '066131') {
+                // Пауза 2 секунди перед показом результатів
+                setTimeout(function() {
+                    // Заповнення результатів
+                    document.getElementById('resultDocType').textContent = docType;
+                    document.getElementById('resultSeriesNumber').textContent = series + ' ' + number;
+                    
+                    // Встановлення поточної дати
+                    const today = new Date().toLocaleDateString('uk-UA');
+                    document.getElementById('checkDate').textContent = today;
+
+                    // Показати сторінку результатів
+                    document.getElementById('searchPage').style.display = 'none';
+                    document.getElementById('resultsPage').style.display = 'block';
+                    
+                    // Оновити іконки
+                    setTimeout(() => lucide.createIcons(), 100);
+                    
+                    // Прокрутити вгору
+                    window.scrollTo(0, 0);
+                }, 2000); // Пауза 2000 мілісекунд = 2 секунди
+            } else {
+                alert('Документ не знайдено в базі даних');
+            }
+        }
+
+        // Функція скидання пошуку
+        function resetSearch() {
+            // Очистити форму
+            document.getElementById('documentType').value = '';
+            document.getElementById('series').value = '';
+            document.getElementById('number').value = '';
+            document.getElementById('captcha').checked = false;
+            
+            // Показати сторінку пошуку
+            document.getElementById('searchPage').style.display = 'block';
+            document.getElementById('resultsPage').style.display = 'none';
+            
+            // Оновити іконки
+            setTimeout(() => lucide.createIcons(), 100);
+            
+            // Прокрутити вгору
+            window.scrollTo(0, 0);
+        }
+
+        // Підтримка Enter для пошуку
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('searchPage').style.display !== 'none') {
+                searchDocument();
+            }
+        });
+    </script>
+</body>
+</html>
