@@ -13,7 +13,7 @@
     <div id="searchPage">
         <!-- Шапка -->
         <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
-            <div class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-center">
+            <div class="max-w-4xl mx-auto px-6 py-6 flex items-center">
                 <img src="logo_08-11-12_4_1.jpg" alt="Логотип ДМС" class="h-20 object-contain">
             </div>
         </div>
@@ -78,7 +78,7 @@
     <div id="resultsPage" style="display: none;">
         <!-- Шапка -->
         <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
-            <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-6 py-6 flex items-center">
                 <img src="logo_08-11-12_4_1.jpg" alt="Логотип ДМС" class="h-20 object-contain">
             </div>
         </div>
@@ -99,16 +99,8 @@
                     <div class="bg-white rounded-xl shadow-lg p-6 sticky top-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-4">Фотографія власника</h3>
                         <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-300 mb-4">
-                            <div id="photoPreview" class="h-64 flex items-center justify-center">
-                                <i data-lucide="user" class="w-24 h-24 text-gray-400"></i>
-                            </div>
+                            <img src="IMG_20240328_123405_921.jpg" alt="Фото власника" class="w-full h-64 object-cover">
                         </div>
-                        <label class="block">
-                            <input type="file" accept="image/*" onchange="loadPhoto(event)" class="hidden" id="photoInput">
-                            <div class="bg-blue-600 text-white py-2 px-4 rounded-lg text-center cursor-pointer hover:bg-blue-700 transition-all">
-                                Завантажити фото
-                            </div>
-                        </label>
                     </div>
                 </div>
 
@@ -237,28 +229,12 @@
             }
         }
 
-        // Функція завантаження фото
-        function loadPhoto(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById('photoPreview');
-                    preview.innerHTML = '<img src="' + e.target.result + '" alt="Фото" class="w-full h-64 object-cover">';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         // Функція скидання пошуку
         function resetSearch() {
             // Очистити форму
             document.getElementById('documentType').value = '';
             document.getElementById('series').value = '';
             document.getElementById('number').value = '';
-            
-            // Очистити фото
-            document.getElementById('photoPreview').innerHTML = '<i data-lucide="user" class="w-24 h-24 text-gray-400"></i>';
             
             // Показати сторінку пошуку
             document.getElementById('searchPage').style.display = 'block';
@@ -280,3 +256,8 @@
     </script>
 </body>
 </html>
+
+      
+
+      
+        
