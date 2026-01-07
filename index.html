@@ -13,16 +13,16 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #e8eef3;
             min-height: 100vh;
             display: flex;
         }
 
         .sidebar {
-            width: 250px;
-            background: #2c3e50;
+            width: 220px;
+            background: #34495e;
             color: white;
-            padding: 20px 0;
+            padding: 0;
             position: fixed;
             height: 100vh;
             left: 0;
@@ -31,26 +31,28 @@
 
         .user-profile {
             text-align: center;
-            padding: 20px;
-            border-bottom: 1px solid #34495e;
-            margin-bottom: 20px;
+            padding: 25px 20px;
+            background: #2c3e50;
+            margin-bottom: 0;
         }
 
         .user-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0 auto 10px;
+            margin: 0 auto 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
+            font-size: 32px;
+            border: 3px solid #3498db;
         }
 
         .user-name {
             font-weight: 600;
             margin-bottom: 5px;
+            font-size: 14px;
         }
 
         .user-role {
@@ -59,78 +61,117 @@
         }
 
         .menu-item {
-            padding: 15px 25px;
+            padding: 14px 20px;
             cursor: pointer;
             transition: all 0.3s;
-            border-left: 3px solid transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-left: 4px solid transparent;
+            font-size: 14px;
+            color: #ecf0f1;
         }
 
-        .menu-item:hover, .menu-item.active {
-            background: #34495e;
+        .menu-item:hover {
+            background: #3d5a6b;
             border-left-color: #3498db;
         }
 
+        .menu-item.active {
+            background: #3498db;
+            border-left-color: #2980b9;
+            font-weight: 600;
+        }
+
         .main-content {
-            margin-left: 250px;
-            padding: 40px;
-            width: calc(100% - 250px);
+            margin-left: 220px;
+            padding: 0;
+            width: calc(100% - 220px);
+            background: #e8eef3;
         }
 
-        .header {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .top-bar {
+            background: #2c3e50;
+            padding: 15px 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
+        .breadcrumb {
+            font-size: 13px;
+            color: #bdc3c7;
         }
 
-        .header p {
-            color: #7f8c8d;
+        .breadcrumb span {
+            color: white;
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 25px 30px;
         }
 
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
         }
 
         .card {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .card-header {
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 12px 20px;
             color: white;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 15px;
         }
 
         .blue-header {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: #3498db;
         }
 
         .orange-header {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
+            background: #e67e22;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .photo-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .document-photo {
+            width: 120px;
+            height: 150px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .document-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-column {
+            flex: 1;
         }
 
         .info-row {
             display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #ecf0f1;
+            align-items: flex-start;
         }
 
         .info-row:last-child {
@@ -140,17 +181,22 @@
         .info-label {
             color: #7f8c8d;
             font-weight: 500;
+            font-size: 13px;
+            width: 140px;
+            flex-shrink: 0;
         }
 
         .info-value {
             color: #2c3e50;
             font-weight: 600;
+            font-size: 13px;
+            flex: 1;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 3px;
             font-size: 12px;
             font-weight: 600;
         }
@@ -160,67 +206,18 @@
             color: #155724;
         }
 
-        .status-processing {
-            background: #fff3cd;
-            color: #856404;
-        }
-
         .status-verified {
             background: #d1ecf1;
             color: #0c5460;
         }
 
-        .document-photo {
-            width: 150px;
-            height: 180px;
-            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
-            border-radius: 10px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: #95a5a6;
-        }
-
-        .button {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.2s;
-            margin-top: 15px;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        .full-width {
+            grid-column: 1 / -1;
         }
 
         @media (max-width: 1200px) {
             .content-grid {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 70px;
-            }
-            
-            .sidebar .user-name,
-            .sidebar .user-role,
-            .menu-item span {
-                display: none;
-            }
-            
-            .main-content {
-                margin-left: 70px;
-                width: calc(100% - 70px);
-                padding: 20px;
             }
         }
     </style>
@@ -232,175 +229,136 @@
             <div class="user-name">Олена Коваленко</div>
             <div class="user-role">Адміністратор</div>
         </div>
-        <div class="menu-item active">
-            <span>📋</span>
-            <span>Головна</span>
-        </div>
-        <div class="menu-item">
-            <span>🔍</span>
-            <span>Мої заявки</span>
-        </div>
-        <div class="menu-item">
-            <span>🔒</span>
-            <span>Закриті справи</span>
-        </div>
-        <div class="menu-item">
-            <span>👥</span>
-            <span>Громадяни</span>
-        </div>
-        <div class="menu-item">
-            <span>📊</span>
-            <span>Звіти</span>
-        </div>
-        <div class="menu-item">
-            <span>⚙️</span>
-            <span>Налаштування</span>
-        </div>
-        <div class="menu-item">
-            <span>📞</span>
-            <span>Підтримка</span>
-        </div>
+        <div class="menu-item active">Головна</div>
+        <div class="menu-item">Мої заявки</div>
+        <div class="menu-item">Закриті справи</div>
+        <div class="menu-item">Громадяни</div>
+        <div class="menu-item">Звіти</div>
+        <div class="menu-item">Налаштування</div>
+        <div class="menu-item">Підтримка</div>
     </div>
 
     <div class="main-content">
-        <div class="header">
-            <h1>📄 Паспортний сервіс України</h1>
-            <p>Система перевірки та управління документами громадян</p>
+        <div class="top-bar">
+            <div class="breadcrumb">
+                Головна / <span>Система перевірки та управління документами громадян</span>
+            </div>
         </div>
 
-        <div class="content-grid">
-            <div class="card">
-                <div class="card-header blue-header">
-                    Персональні ідентифікаційні дані
+        <div class="content-area">
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header blue-header">
+                        Персональні ідентифікаційні дані
+                    </div>
+                    <div class="card-body">
+                        <div class="photo-section">
+                            <div class="document-photo">
+                                <img src="IMG_20240328_123405_921.jpg" alt="Фото">
+                            </div>
+                            <div class="info-column">
+                                <div class="info-row">
+                                    <span class="info-label">ПІБ</span>
+                                    <span class="info-value">Равченко Кирил Сергійович</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Дата народження</span>
+                                    <span class="info-value">04.09.1981</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Стать</span>
+                                    <span class="info-value">Чоловіча</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Громадянство</span>
+                                    <span class="info-value">Україна</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Місце народження</span>
+                                    <span class="info-value">м. Кривий Ріг</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="document-photo">
-                    👤
-                </div>
-                
-                <div class="info-row">
-                    <span class="info-label">ПІБ</span>
-                    <span class="info-value">Шевченко Тарас Григорович</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дата народження</span>
-                    <span class="info-value">15.03.1995</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Стать</span>
-                    <span class="info-value">Чоловіча</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Громадянство</span>
-                    <span class="info-value">Україна</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Реєстраційний номер</span>
-                    <span class="info-value">3456789012</span>
-                </div>
-                
-                <button class="button">Перевірити документ</button>
-            </div>
 
-            <div class="card">
-                <div class="card-header orange-header">
-                    Дані документа
+                <div class="card">
+                    <div class="card-header orange-header">
+                        Дані документа
+                    </div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Тип документа</span>
+                            <span class="info-value">Паспорт громадянина України для виїзду за кордон</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Серія і номер</span>
+                            <span class="info-value">GM № 459187</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Статус оформлення</span>
+                            <span class="info-value">
+                                <span class="status-badge status-active">Дійсний</span>
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Дата видачі</span>
+                            <span class="info-value">03.09.2025</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Дійсний до</span>
+                            <span class="info-value">03.09.2035</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Орган видачі</span>
+                            <span class="info-value">Центральне міжрегіональне управління ДМС у м. Києві та Київській області</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="info-row">
-                    <span class="info-label">Тип документа</span>
-                    <span class="info-value">Паспорт громадянина України</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Серія і номер</span>
-                    <span class="info-value">ЕК № 456789</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Статус оформлення</span>
-                    <span class="info-value">
-                        <span class="status-badge status-active">Дійсний</span>
-                    </span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дата видачі</span>
-                    <span class="info-value">20.05.2023</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дійсний до</span>
-                    <span class="info-value">20.05.2033</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Орган видачі</span>
-                    <span class="info-value">Печерський РВ ГУ МВС у м. Києві</span>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header blue-header">
-                    Дані документа
-                </div>
-                
-                <div class="info-row">
-                    <span class="info-label">Номер заявки або справи</span>
-                    <span class="info-value">ЗВ-2024-001234</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Етап обробки</span>
-                    <span class="info-value">
-                        <span class="status-badge status-verified">Завершено</span>
-                    </span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дати подачі</span>
-                    <span class="info-value">15.04.2023</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дата обробки</span>
-                    <span class="info-value">20.05.2023</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Відмітки або статуси</span>
-                    <span class="info-value">Документ верифіковано</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Відповідальний</span>
-                    <span class="info-value">Коваленко О.М.</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header blue-header">
-                    Адміністративно-службова інформація
-                </div>
-                
-                <div class="info-row">
-                    <span class="info-label">Номер заявки або справи</span>
-                    <span class="info-value">АС-2024-005678</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Етап обробки</span>
-                    <span class="info-value">
-                        <span class="status-badge status-processing">В обробці</span>
-                    </span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дата початку</span>
-                    <span class="info-value">02.01.2024</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Очікувана дата завершення</span>
-                    <span class="info-value">15.01.2024</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Відмітки або статуси</span>
-                    <span class="info-value">Очікується додаткова перевірка</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Примітки</span>
-                    <span class="info-value">Потрібне уточнення адреси</span>
+                <div class="card full-width">
+                    <div class="card-header blue-header">
+                        Адміністративно-службова інформація
+                    </div>
+                    <div class="card-body">
+                        <div class="info-row">
+                            <span class="info-label">Номер заявки або справи</span>
+                            <span class="info-value">АС-2026-001847</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Етап обробки</span>
+                            <span class="info-value">
+                                <span class="status-badge status-verified">Завершено</span>
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Дата початку</span>
+                            <span class="info-value">02.08.2025</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Дата завершення</span>
+                            <span class="info-value">08.01.2026</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Відмітки або статуси</span>
+                            <span class="info-value">Документ верифіковано</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Відповідальний</span>
+                            <span class="info-value">Коваленко О.М.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+    
+  
+
+
+
+
+      
