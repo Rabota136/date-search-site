@@ -248,39 +248,46 @@
             border: 1px solid #d0d0d0;
         }
 
-        .data-table tr {
-            border-bottom: 1px solid #d0d0d0;
+        .data-table thead tr {
+            background: #3498db;
+            color: white;
         }
 
-        .data-table tr:last-child {
-            border-bottom: none;
+        .data-table thead th {
+            padding: 12px 15px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            border-right: 1px solid #2980b9;
         }
 
-        .data-table tr:nth-child(odd) {
-            background: #f0f4f8;
+        .data-table thead th:last-child {
+            border-right: none;
         }
 
-        .data-table tr:nth-child(even) {
+        .data-table tbody tr {
             background: white;
         }
 
-        .data-table td {
+        .data-table tbody td {
             padding: 12px 15px;
             font-size: 13px;
-            vertical-align: middle;
+            vertical-align: top;
             border-right: 1px solid #d0d0d0;
-        }
-
-        .data-table td:first-child {
-            color: #5a6c7d;
-            font-weight: 500;
-            width: 42%;
-        }
-
-        .data-table td:last-child {
             color: #2c3e50;
             font-weight: 600;
+        }
+
+        .data-table tbody td:last-child {
             border-right: none;
+        }
+
+        .orange-table thead tr {
+            background: #e67e22;
+        }
+
+        .orange-table thead th {
+            border-right: 1px solid #d35400;
         }
 
         .status-badge {
@@ -386,31 +393,37 @@
                         Дані документа
                     </div>
                     <div class="card-body">
-                        <table class="data-table">
-                            <tr>
-                                <td>Тип документа</td>
-                                <td>Паспорт громадянина України для виїзду за кордон</td>
-                            </tr>
-                            <tr>
-                                <td>Серія і номер</td>
-                                <td>GM № 459187</td>
-                            </tr>
-                            <tr>
-                                <td>Статус оформлення</td>
-                                <td><span class="status-badge status-active">Дійсний</span></td>
-                            </tr>
-                            <tr>
-                                <td>Дата видачі</td>
-                                <td>03.09.2025</td>
-                            </tr>
-                            <tr>
-                                <td>Дійсний до</td>
-                                <td>03.09.2035</td>
-                            </tr>
-                            <tr>
-                                <td>Орган видачі</td>
-                                <td>Центральне міжрегіональне управління ДМС у м. Києві та Київській області</td>
-                            </tr>
+                        <table class="data-table orange-table">
+                            <thead>
+                                <tr>
+                                    <th>Тип документа</th>
+                                    <th>Серія і номер</th>
+                                    <th>Статус оформлення</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Паспорт громадянина України для виїзду за кордон</td>
+                                    <td>GM № 459187</td>
+                                    <td><span class="status-badge status-active">Дійсний</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="data-table orange-table" style="margin-top: 15px;">
+                            <thead>
+                                <tr>
+                                    <th>Дата видачі</th>
+                                    <th>Дійсний до</th>
+                                    <th>Орган видачі</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>03.09.2025</td>
+                                    <td>03.09.2035</td>
+                                    <td>Центральне міжрегіональне управління ДМС у м. Києві та Київській області</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -421,30 +434,36 @@
                     </div>
                     <div class="card-body">
                         <table class="data-table">
-                            <tr>
-                                <td>Номер заявки або справи</td>
-                                <td>АС-2026-001847</td>
-                            </tr>
-                            <tr>
-                                <td>Етап обробки</td>
-                                <td><span class="status-badge status-verified">Завершено</span></td>
-                            </tr>
-                            <tr>
-                                <td>Дата початку</td>
-                                <td>09.01.2026</td>
-                            </tr>
-                            <tr>
-                                <td>Дата завершення</td>
-                                <td>09.01.2026</td>
-                            </tr>
-                            <tr>
-                                <td>Відмітки або статуси</td>
-                                <td>Документ верифіковано</td>
-                            </tr>
-                            <tr>
-                                <td>Відповідальний</td>
-                                <td>Коваленко О.М.</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Номер заявки або справи</th>
+                                    <th>Етап обробки</th>
+                                    <th>Дата початку</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>АС-2026-001847</td>
+                                    <td><span class="status-badge status-verified">Завершено</span></td>
+                                    <td>09.01.2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="data-table" style="margin-top: 15px;">
+                            <thead>
+                                <tr>
+                                    <th>Дата завершення</th>
+                                    <th>Відмітки або статуси</th>
+                                    <th>Відповідальний</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>09.01.2026</td>
+                                    <td>Документ верифіковано</td>
+                                    <td>Коваленко О.М.</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -453,7 +472,19 @@
     </div>
 </body>
 </html>
+    
+      
+
   
+
+  
+     
+   
+        
+
+       
+      
+ 
      
    
       
