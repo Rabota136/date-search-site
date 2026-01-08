@@ -245,33 +245,42 @@
         .data-table {
             width: 100%;
             border-collapse: collapse;
+            border: 1px solid #d0d0d0;
         }
 
         .data-table tr {
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #d0d0d0;
         }
 
         .data-table tr:last-child {
             border-bottom: none;
         }
 
+        .data-table tr:nth-child(odd) {
+            background: #f0f4f8;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: white;
+        }
+
         .data-table td {
-            padding: 16px 12px;
-            font-size: 14px;
+            padding: 12px 15px;
+            font-size: 13px;
             vertical-align: middle;
+            border-right: 1px solid #d0d0d0;
         }
 
         .data-table td:first-child {
-            color: #7f8c8d;
+            color: #5a6c7d;
             font-weight: 500;
-            width: 40%;
-            background: #f8f9fa;
+            width: 42%;
         }
 
         .data-table td:last-child {
             color: #2c3e50;
             font-weight: 600;
-            background: white;
+            border-right: none;
         }
 
         .status-badge {
@@ -444,8 +453,23 @@
     </div>
 </body>
 </html>
+  
+     
+   
+      
+ 
 
 
+      
+
+     
+      
+       
+  
+     
+    
+ 
+ 
     
      
   
