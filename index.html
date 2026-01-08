@@ -40,13 +40,19 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
             margin: 0 auto 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
             border: 3px solid #3498db;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .user-name {
@@ -190,19 +196,18 @@
 
         .photo-section {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 0;
+            align-items: flex-start;
         }
 
         .document-photo {
-            width: 200px;
-            height: 250px;
+            width: 280px;
+            height: 350px;
             background: #ecf0f1;
             border-radius: 4px;
             overflow: hidden;
             flex-shrink: 0;
-            margin-bottom: 25px;
         }
 
         .document-photo img {
@@ -213,6 +218,7 @@
 
         .info-column {
             width: 100%;
+            flex: 1;
         }
 
         .info-row {
@@ -239,6 +245,35 @@
             font-weight: 600;
             font-size: 15px;
             flex: 1;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table tr {
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .data-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .data-table td {
+            padding: 14px 10px;
+            font-size: 14px;
+        }
+
+        .data-table td:first-child {
+            color: #7f8c8d;
+            font-weight: 500;
+            width: 45%;
+        }
+
+        .data-table td:last-child {
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         .status-badge {
@@ -273,7 +308,9 @@
 <body>
     <div class="sidebar">
         <div class="user-profile">
-            <div class="user-avatar">👤</div>
+            <div class="user-avatar">
+                <img src="pngtree-portrait-of-a-young-woman-with-natural-makeup-and-soft-curls-png-image_14105361 (2).jpg" alt="Адміністратор">
+            </div>
             <div class="user-name">Олена Коваленко</div>
             <div class="user-role">Адміністратор</div>
         </div>
@@ -342,32 +379,32 @@
                         Дані документа
                     </div>
                     <div class="card-body">
-                        <div class="info-row">
-                            <span class="info-label">Тип документа</span>
-                            <span class="info-value">Паспорт громадянина України для виїзду за кордон</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Серія і номер</span>
-                            <span class="info-value">GM № 459187</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Статус оформлення</span>
-                            <span class="info-value">
-                                <span class="status-badge status-active">Дійсний</span>
-                            </span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Дата видачі</span>
-                            <span class="info-value">03.09.2025</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Дійсний до</span>
-                            <span class="info-value">03.09.2035</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Орган видачі</span>
-                            <span class="info-value">Центральне міжрегіональне управління ДМС у м. Києві та Київській області</span>
-                        </div>
+                        <table class="data-table">
+                            <tr>
+                                <td>Тип документа</td>
+                                <td>Паспорт громадянина України для виїзду за кордон</td>
+                            </tr>
+                            <tr>
+                                <td>Серія і номер</td>
+                                <td>GM № 459187</td>
+                            </tr>
+                            <tr>
+                                <td>Статус оформлення</td>
+                                <td><span class="status-badge status-active">Дійсний</span></td>
+                            </tr>
+                            <tr>
+                                <td>Дата видачі</td>
+                                <td>03.09.2025</td>
+                            </tr>
+                            <tr>
+                                <td>Дійсний до</td>
+                                <td>03.09.2035</td>
+                            </tr>
+                            <tr>
+                                <td>Орган видачі</td>
+                                <td>Центральне міжрегіональне управління ДМС у м. Києві та Київській області</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -376,32 +413,32 @@
                         Адміністративно-службова інформація
                     </div>
                     <div class="card-body">
-                        <div class="info-row">
-                            <span class="info-label">Номер заявки або справи</span>
-                            <span class="info-value">АС-2026-001847</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Етап обробки</span>
-                            <span class="info-value">
-                                <span class="status-badge status-verified">Завершено</span>
-                            </span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Дата початку</span>
-                            <span class="info-value">02.08.2025</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Дата завершення</span>
-                            <span class="info-value">08.01.2026</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Відмітки або статуси</span>
-                            <span class="info-value">Документ верифіковано</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Відповідальний</span>
-                            <span class="info-value">Коваленко О.М.</span>
-                        </div>
+                        <table class="data-table">
+                            <tr>
+                                <td>Номер заявки або справи</td>
+                                <td>АС-2026-001847</td>
+                            </tr>
+                            <tr>
+                                <td>Етап обробки</td>
+                                <td><span class="status-badge status-verified">Завершено</span></td>
+                            </tr>
+                            <tr>
+                                <td>Дата початку</td>
+                                <td>02.08.2025</td>
+                            </tr>
+                            <tr>
+                                <td>Дата завершення</td>
+                                <td>08.01.2026</td>
+                            </tr>
+                            <tr>
+                                <td>Відмітки або статуси</td>
+                                <td>Документ верифіковано</td>
+                            </tr>
+                            <tr>
+                                <td>Відповідальний</td>
+                                <td>Коваленко О.М.</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -410,7 +447,11 @@
 </body>
 </html>
 
-            
+
+ 
+    
+
+
   
  
 
