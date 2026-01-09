@@ -39,7 +39,7 @@
         .user-avatar {
             width: 70px;
             height: 70px;
-            border-radius: 50%;
+            border-radius: 8px;
             margin: 0 auto 12px;
             display: flex;
             align-items: center;
@@ -254,8 +254,8 @@
         }
 
         .data-table thead th {
-            padding: 12px 15px;
-            font-size: 13px;
+            padding: 10px 8px;
+            font-size: 11px;
             font-weight: 600;
             text-align: left;
             border-right: 1px solid #2980b9;
@@ -270,12 +270,13 @@
         }
 
         .data-table tbody td {
-            padding: 12px 15px;
-            font-size: 13px;
-            vertical-align: top;
+            padding: 10px 8px;
+            font-size: 11px;
+            vertical-align: middle;
             border-right: 1px solid #d0d0d0;
             color: #2c3e50;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .data-table tbody td:last-child {
@@ -288,6 +289,48 @@
 
         .orange-table thead th {
             border-right: 1px solid #d35400;
+        }
+
+        .page-container {
+            display: none;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        .pagination-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .pagination-btn:hover {
+            background: #2980b9;
+        }
+
+        .image-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-page img {
+            max-width: 75%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 4px;
         }
 
         .status-badge {
@@ -326,7 +369,7 @@
                 <img src="pngtree-portrait-of-a-young-woman-with-natural-makeup-and-soft-curls-png-image_14105361 (2).jpg" alt="Адміністратор">
             </div>
             <div class="user-name">Олена Коваленко</div>
-            <div class="user-role">Адміністратор</div>
+            <div class="user-role">Спеціаліст</div>
         </div>
         <div class="menu-item active">Головна</div>
         <div class="submenu active">
@@ -352,127 +395,142 @@
         </div>
 
         <div class="content-area">
-            <div class="content-grid">
-                <div class="card left-tall">
-                    <div class="card-header blue-header">
-                        Персональні ідентифікаційні дані
-                    </div>
-                    <div class="card-body">
-                        <div class="photo-section">
-                            <div class="document-photo">
-                                <img src="IMG_20240328_123405_921.jpg" alt="Фото">
-                            </div>
-                            <div class="info-column">
-                                <div class="info-row">
-                                    <span class="info-label">ПІБ</span>
-                                    <span class="info-value">Равченко Кирил Сергійович</span>
+            <div class="page-container active" id="page1">
+                <div class="content-grid">
+                    <div class="card left-tall">
+                        <div class="card-header blue-header">
+                            Персональні ідентифікаційні дані
+                        </div>
+                        <div class="card-body">
+                            <div class="photo-section">
+                                <div class="document-photo">
+                                    <img src="IMG_20240328_123405_921.jpg" alt="Фото">
                                 </div>
-                                <div class="info-row">
-                                    <span class="info-label">Дата народження</span>
-                                    <span class="info-value">04.09.1981</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Стать</span>
-                                    <span class="info-value">Чоловіча</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Громадянство</span>
-                                    <span class="info-value">Україна</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Місце народження</span>
-                                    <span class="info-value">м. Кривий Ріг</span>
+                                <div class="info-column">
+                                    <div class="info-row">
+                                        <span class="info-label">ПІБ</span>
+                                        <span class="info-value">Равченко Кирил Сергійович</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Дата народження</span>
+                                        <span class="info-value">04.09.1981</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Стать</span>
+                                        <span class="info-value">Чоловіча</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Громадянство</span>
+                                        <span class="info-value">Україна</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Місце народження</span>
+                                        <span class="info-value">м. Кривий Ріг</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card right-top">
-                    <div class="card-header orange-header">
-                        Дані документа
+                    <div class="card right-top">
+                        <div class="card-header orange-header">
+                            Дані документа
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table orange-table">
+                                <thead>
+                                    <tr>
+                                        <th>Тип документа</th>
+                                        <th>Серія і номер</th>
+                                        <th>Статус оформлення</th>
+                                        <th>Дата видачі</th>
+                                        <th>Дійсний до</th>
+                                        <th>Орган видачі</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Паспорт громадянина України для виїзду за кордон</td>
+                                        <td>GM № 459187</td>
+                                        <td><span class="status-badge status-active">Дійсний</span></td>
+                                        <td>03.09.2025</td>
+                                        <td>03.09.2035</td>
+                                        <td>Центральне міжрегіональне управління ДМС у м. Києві та Київській області</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="data-table orange-table">
-                            <thead>
-                                <tr>
-                                    <th>Тип документа</th>
-                                    <th>Серія і номер</th>
-                                    <th>Статус оформлення</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Паспорт громадянина України для виїзду за кордон</td>
-                                    <td>GM № 459187</td>
-                                    <td><span class="status-badge status-active">Дійсний</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="data-table orange-table" style="margin-top: 15px;">
-                            <thead>
-                                <tr>
-                                    <th>Дата видачі</th>
-                                    <th>Дійсний до</th>
-                                    <th>Орган видачі</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>03.09.2025</td>
-                                    <td>03.09.2035</td>
-                                    <td>Центральне міжрегіональне управління ДМС у м. Києві та Київській області</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-                <div class="card right-bottom">
-                    <div class="card-header blue-header">
-                        Адміністративно-службова інформація
-                    </div>
-                    <div class="card-body">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Номер заявки або справи</th>
-                                    <th>Етап обробки</th>
-                                    <th>Дата початку</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>АС-2026-001847</td>
-                                    <td><span class="status-badge status-verified">Завершено</span></td>
-                                    <td>09.01.2026</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="data-table" style="margin-top: 15px;">
-                            <thead>
-                                <tr>
-                                    <th>Дата завершення</th>
-                                    <th>Відмітки або статуси</th>
-                                    <th>Відповідальний</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>09.01.2026</td>
-                                    <td>Документ верифіковано</td>
-                                    <td>Коваленко О.М.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="card right-bottom">
+                        <div class="card-header blue-header">
+                            Адміністративно-службова інформація
+                        </div>
+                        <div class="card-body">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Номер заявки або справи</th>
+                                        <th>Етап обробки</th>
+                                        <th>Дата початку</th>
+                                        <th>Дата завершення</th>
+                                        <th>Відмітки або статуси</th>
+                                        <th>Відповідальний</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>АС-2026-001847</td>
+                                        <td><span class="status-badge status-verified">Завершено</span></td>
+                                        <td>09.01.2026</td>
+                                        <td>09.01.2026</td>
+                                        <td>Документ верифіковано</td>
+                                        <td>Коваленко О.М.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <button class="pagination-btn" onclick="showPage(2)">Наступна сторінка</button>
+            </div>
+
+            <div class="page-container" id="page2">
+                <div class="image-page">
+                    <img src="IMG_20240328_123405_921.jpg" alt="Документ сторінка 1">
+                </div>
+                <button class="pagination-btn" onclick="showPage(3)">Наступна сторінка</button>
+            </div>
+
+            <div class="page-container" id="page3">
+                <div class="image-page">
+                    <img src="IMG_20240328_123405_921.jpg" alt="Документ сторінка 2">
+                </div>
+                <button class="pagination-btn" onclick="showPage(4)">Наступна сторінка</button>
+            </div>
+
+            <div class="page-container" id="page4">
+                <div class="image-page">
+                    <img src="Без имени-1.jpg" alt="Документ сторінка 3">
+                </div>
+                <button class="pagination-btn" onclick="showPage(1)">Повернутися на головну</button>
             </div>
         </div>
     </div>
+
+    <script>
+        function showPage(pageNum) {
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('page' + pageNum).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
-    
+ 
+   
       
 
   
