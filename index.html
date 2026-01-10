@@ -481,8 +481,8 @@
                                     <tr>
                                         <td>АС-2026-001847</td>
                                         <td><span class="status-badge status-verified">Завершено</span></td>
-                                        <td>09.01.2026</td>
-                                        <td>09.01.2026</td>
+                                        <td>12.01.2026</td>
+                                        <td>12.01.2026</td>
                                         <td>Документ верифіковано</td>
                                         <td>Коваленко О.М.</td>
                                     </tr>
@@ -519,15 +519,41 @@
 
     <script>
         function showPage(pageNum) {
-            document.querySelectorAll('.page-container').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('page' + pageNum).classList.add('active');
-            window.scrollTo(0, 0);
+            // Додаємо затемнення перед переходом
+            const contentArea = document.querySelector('.content-area');
+            contentArea.style.opacity = '0.5';
+            contentArea.style.pointerEvents = 'none';
+            
+            // Чекаємо 2 секунди перед переходом
+            setTimeout(() => {
+                document.querySelectorAll('.page-container').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById('page' + pageNum).classList.add('active');
+                window.scrollTo(0, 0);
+                
+                // Повертаємо нормальний вигляд
+                contentArea.style.opacity = '1';
+                contentArea.style.pointerEvents = 'auto';
+            }, 2000);
         }
     </script>
 </body>
 </html>
+ 
+  
+
+  
+
+     
+
+     
+
+        
+           
+          
+       
+      
 
  
 
